@@ -1,0 +1,104 @@
+@model Application.DTOs.CreateListingDto
+@{
+    ViewData["Title"] = L["CreateListing"].Value;
+}
+
+<h2>@L["CreateNewListing"]</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="control-label">@L["Title"]</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Description" class="control-label">@L["Description"]</label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Price" class="control-label">@L["Price"]</label>
+                <div class="input-group">
+                    <input asp-for="Price" class="form-control" type="number" step="0.01" />
+                    <select asp-for="Currency" class="form-select" style="max-width: 100px;">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="MKD">MKD</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="CategoryId" class="control-label">@L["Category"]</label>
+                <select asp-for="CategoryId" class="form-control">
+                    <option value="1">@L["Car"]</option>
+                    <option value="2">@L["Motorcycle"]</option>
+                    <option value="3">@L["Part"]</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ListingType" class="control-label">@L["Type"]</label>
+                <select asp-for="ListingType" class="form-control">
+                    <option value="Car">@L["Car"]</option>
+                    <option value="Motorcycle">@L["Motorcycle"]</option>
+                    <option value="Part">@L["Part"]</option>
+                </select>
+                <span asp-validation-for="ListingType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Make" class="control-label">@L["Make"]</label>
+                <input asp-for="Make" class="form-control" />
+                <span asp-validation-for="Make" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Model" class="control-label">@L["Model"]</label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Year" class="control-label">@L["Year"]</label>
+                <input asp-for="Year" class="form-control" type="number" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Condition" class="control-label">@L["Condition"]</label>
+                <select asp-for="Condition" class="form-control">
+                    <option value="">@L["SelectCategory"]</option>
+                    <option value="New">@L["New"]</option>
+                    <option value="Used">@L["Used"]</option>
+                    <option value="Refurbished">@L["Refurbished"]</option>
+                </select>
+                <span asp-validation-for="Condition" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ImageUrl" class="control-label">@L["ImageUrl"]</label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <input type="submit" value="@L["Save"]" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">@L["Cancel"]</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

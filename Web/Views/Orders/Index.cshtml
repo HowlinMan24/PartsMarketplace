@@ -1,0 +1,54 @@
+@model IEnumerable<Application.DTOs.OrderDto>
+@{
+    ViewData["Title"] = L["MyOrders"].Value;
+    var isMacedonianSite = ViewBag.IsMacedonianSite as bool? ?? false;
+    var convertedPrices = ViewBag.ConvertedPrices as Dictionary<int, decimal>;
+}
+
+<h2>@L["MyOrders"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@L["OrderId"]</th>
+                <th>@L["Date"]</th>
+                <th>@L["TotalAmount"]</th>
+                <th>@L["Status"]</th>
+                <th>@L["Actions"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.OrderDate.ToString("MMM dd, yyyy")</td>
+                    <td>
+                        @if (isMacedonianSite && convertedPrices != null && convertedPrices.ContainsKey(order.Id))
+                        {
+                            @convertedPrices[order.Id].ToString("N0") @:MKD
+                        }
+                        else
+                        {
+                            @:$@order.TotalAmount.ToString("N2")
+                        }
+                    </td>
+                    <td>
+                        <span class="badge bg-@(order.Status == "Paid" ? "success" : order.Status == "Pending" ? "warning" : "secondary")">
+                            @L[order.Status]
+                        </span>
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-outline-primary">@L["ViewDetails"]</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>@L["NoOrders"]</p>
+}

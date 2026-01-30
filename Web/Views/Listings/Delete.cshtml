@@ -1,0 +1,29 @@
+@model Web.ViewModels.ListingDetailsViewModel
+@{
+    ViewData["Title"] = L["DeleteListing"].Value;
+}
+
+<h2>@L["DeleteListing"]</h2>
+
+<h3>@L["ConfirmDelete"]</h3>
+<div>
+    <h4>@Model.Listing.Title</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@L["Description"]:</dt>
+        <dd class="col-sm-10">@Model.Listing.Description</dd>
+
+        <dt class="col-sm-2">@L["Price"]:</dt>
+        <dd class="col-sm-10">@Model.PriceTransformation.TotalPriceWithTax.ToString("N2") @Model.PriceTransformation.Currency</dd>
+
+        <dt class="col-sm-2">@L["Type"]:</dt>
+        <dd class="col-sm-10">@L[Model.Listing.ListingType]</dd>
+    </dl>
+
+    <form asp-action="Delete" asp-route-id="@Model.Listing.Id" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Listing.Id" />
+        <input type="submit" value="@L["Delete"]" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">@L["Cancel"]</a>
+    </form>
+</div>

@@ -1,0 +1,55 @@
+@model Web.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = L["Login"].Value;
+    var returnUrl = ViewData["ReturnUrl"] as string ?? "";
+    var isOrderReturn = returnUrl.Contains("Orders/Create", StringComparison.OrdinalIgnoreCase);
+}
+
+<h2>@L["Login"]</h2>
+
+@if (isOrderReturn)
+{
+    <div class="alert alert-info mb-3">
+        @L["LoginToCompletePurchase"]
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login" method="post" asp-route-returnUrl="@returnUrl">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" name="returnUrl" value="@returnUrl" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="control-label">@L["Email"]</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Password" class="control-label">@L["Password"]</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="checkbox">
+                    <label asp-for="RememberMe">
+                        <input asp-for="RememberMe" />
+                        @L["RememberMe"]
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <button type="submit" class="btn btn-primary">@L["Login"]</button>
+            </div>
+
+            <p>@L["DontHaveAccount"] <a asp-action="Register">@L["RegisterHere"]</a></p>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

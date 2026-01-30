@@ -1,0 +1,46 @@
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio cache/options
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.sln.docstates
+
+## Local environment
+.env
+.env.local
+*.db
+*.sqlite
+*.sqlite3
+
+## Package/dependency files
+packages/
+.nuget/
+
+## IDE
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+## OS
+Thumbs.db
+
+## Build output
+publish/

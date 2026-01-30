@@ -1,0 +1,23 @@
+app = "replace-with-your-app-name"
+primary_region = "ams"
+
+[build]
+  # Optional: image builder can be specified. Fly can build from Dockerfile or use builders.
+  image = "mcr.microsoft.com/dotnet/sdk:9.0"
+
+[[services]]
+  internal_port = 80
+  protocol = "tcp"
+
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+[env]
+  # Do NOT store production secrets here. Use `fly secrets set` or GitHub secrets.
+  # Example env var key (set via secrets):
+  # ConnectionStrings__DefaultConnection = "Host=...;Username=...;Password=...;Database=...;SSL Mode=Require;Trust Server Certificate=true;"

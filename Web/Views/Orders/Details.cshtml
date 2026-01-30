@@ -1,0 +1,78 @@
+@model Application.DTOs.OrderDto
+@{
+    ViewData["Title"] = L["OrderDetails"].Value;
+    var isMacedonianSite = ViewBag.IsMacedonianSite as bool? ?? false;
+    var convertedTotal = ViewBag.ConvertedTotal as decimal?;
+    var convertedItems = ViewBag.ConvertedItems as Dictionary<int, (decimal UnitPrice, decimal Subtotal)>;
+}
+
+<h2>@L["OrderDetails"]</h2>
+
+<div>
+    <h4>@L["OrderId"] #@Model.Id</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@L["OrderDate"]:</dt>
+        <dd class="col-sm-10">@Model.OrderDate.ToString("MMM dd, yyyy HH:mm")</dd>
+
+        <dt class="col-sm-2">@L["Status"]:</dt>
+        <dd class="col-sm-10">
+            <span class="badge bg-@(Model.Status == "Paid" ? "success" : Model.Status == "Pending" ? "warning" : "secondary")">
+                @L[Model.Status]
+            </span>
+        </dd>
+
+        <dt class="col-sm-2">@L["TotalAmount"]:</dt>
+        <dd class="col-sm-10">
+            <strong>
+                @if (isMacedonianSite && convertedTotal.HasValue)
+                {
+                    @convertedTotal.Value.ToString("N0") @:MKD
+                }
+                else
+                {
+                    @:$@Model.TotalAmount.ToString("N2")
+                }
+            </strong>
+        </dd>
+
+        <dt class="col-sm-2">@L["ShippingAddress"]:</dt>
+        <dd class="col-sm-10">
+            @Model.ShippingAddress<br />
+            @Model.ShippingCity, @Model.ShippingPostalCode<br />
+            @Model.ShippingCountry
+        </dd>
+    </dl>
+
+    <h5>@L["OrderItems"]</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@L["Listing"]</th>
+                <th>@L["Price"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItems)
+            {
+                <tr>
+                    <td>@item.ListingTitle</td>
+                    <td>
+                        @if (isMacedonianSite && convertedItems != null && convertedItems.ContainsKey(item.Id))
+                        {
+                            @convertedItems[item.Id].UnitPrice.ToString("N0") @:MKD
+                        }
+                        else
+                        {
+                            @:$@item.UnitPrice.ToString("N2")
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">@L["BackToOrders"]</a>
+</div>

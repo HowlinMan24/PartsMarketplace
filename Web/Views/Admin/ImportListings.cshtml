@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Import Listings";
+}
+
+<h2>Import Listings from CSV</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">@ViewBag.Message</div>
+}
+
+<form asp-action="ImportListings" method="post" enctype="multipart/form-data">
+    <div class="form-group mb-3">
+        <label for="file">Select CSV File:</label>
+        <input type="file" name="file" class="form-control" accept=".csv" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Import</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+<div class="mt-4">
+    <h5>CSV Format:</h5>
+    <p>The CSV file should have the following columns:</p>
+    <ul>
+        <li>Title</li>
+        <li>Description</li>
+        <li>Price</li>
+        <li>CategoryId</li>
+        <li>ListingType</li>
+        <li>Make (optional)</li>
+        <li>Model (optional)</li>
+        <li>Year (optional)</li>
+        <li>Condition (optional)</li>
+        <li>ImageUrl (optional)</li>
+    </ul>
+</div>

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" msdata:Ordinal="5" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CarPartsMarketplace" xml:space="preserve">
+    <value>Пазар за автоделови</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Почетна</value>
+  </data>
+  <data name="Listings" xml:space="preserve">
+    <value>Огласи</value>
+  </data>
+  <data name="CreateListing" xml:space="preserve">
+    <value>Нов оглас</value>
+  </data>
+  <data name="MyOrders" xml:space="preserve">
+    <value>Мои нарачки</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Админ</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>Мој профил</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Здраво</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Одјава</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Најава</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрација</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Приватност</value>
+  </data>
+  <data name="HomeTitle" xml:space="preserve">
+    <value>Пазар за автоделови</value>
+  </data>
+  <data name="HomeSubtitle" xml:space="preserve">
+    <value>Купете и продавајте употребувани автомобили, мотори и резервни делови</value>
+  </data>
+  <data name="SearchPlaceholder" xml:space="preserve">
+    <value>Пребарај огласи...</value>
+  </data>
+  <data name="AllTypes" xml:space="preserve">
+    <value>Сите типови</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Пребарај</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>Нема слика</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="NoListingsFound" xml:space="preserve">
+    <value>Нема пронајдени огласи.</value>
+  </data>
+  <data name="CreateFirstListing" xml:space="preserve">
+    <value>Креирајте прв оглас!</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Јазик</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Macedonian" xml:space="preserve">
+    <value>Македонски</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Car" xml:space="preserve">
+    <value>Автомобил</value>
+  </data>
+  <data name="Motorcycle" xml:space="preserve">
+    <value>Мотоцикл</value>
+  </data>
+  <data name="Part" xml:space="preserve">
+    <value>Дел</value>
+  </data>
+  <data name="MyListings" xml:space="preserve">
+    <value>Мои огласи</value>
+  </data>
+  <data name="CreateNewListing" xml:space="preserve">
+    <value>Креирај нов оглас</value>
+  </data>
+  <data name="NoListingsAvailable" xml:space="preserve">
+    <value>Нема достапни огласи.</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Измени</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Избриши</value>
+  </data>
+  <data name="ListingDetails" xml:space="preserve">
+    <value>Детали за оглас</value>
+  </data>
+  <data name="NoImageAvailable" xml:space="preserve">
+    <value>Нема достапна слика</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Опис</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категорија</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Make" xml:space="preserve">
+    <value>Марка</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Модел</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Година</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>Состојба</value>
+  </data>
+  <data name="Seller" xml:space="preserve">
+    <value>Продавач</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Креирано</value>
+  </data>
+  <data name="BuyNow" xml:space="preserve">
+    <value>Купи сега</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Назад кон листата</value>
+  </data>
+  <data name="ApproxIn" xml:space="preserve">
+    <value>Приближно во</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Наслов</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>Линк до слика</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Валута</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Избери категорија</value>
+  </data>
+  <data name="SelectType" xml:space="preserve">
+    <value>Избери тип</value>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>Опционално</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Зачувај</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Откажи</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Дали сте сигурни дека сакате да го избришете овој оглас?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Нарачки</value>
+  </data>
+  <data name="OrderDetails" xml:space="preserve">
+    <value>Детали за нарачка</value>
+  </data>
+  <data name="ShippingAddress" xml:space="preserve">
+    <value>Адреса за испорака</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Град</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Држава</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>Поштенски број</value>
+  </data>
+  <data name="PlaceOrder" xml:space="preserve">
+    <value>Нарачај</value>
+  </data>
+  <data name="OrderDate" xml:space="preserve">
+    <value>Датум на нарачка</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Вкупно</value>
+  </data>
+  <data name="NoOrders" xml:space="preserve">
+    <value>Немате нарачки.</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Презиме</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Е-пошта</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Лозинка</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Потврди лозинка</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомни ме</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Заборавена лозинка?</value>
+  </data>
+  <data name="DontHaveAccount" xml:space="preserve">
+    <value>Немате сметка?</value>
+  </data>
+  <data name="AlreadyHaveAccount" xml:space="preserve">
+    <value>Веќе имате сметка?</value>
+  </data>
+  <data name="RegisterHere" xml:space="preserve">
+    <value>Регистрирајте се тука</value>
+  </data>
+  <data name="LoginHere" xml:space="preserve">
+    <value>Најавете се тука</value>
+  </data>
+  <data name="ManageProfile" xml:space="preserve">
+    <value>Уреди профил</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Адреса</value>
+  </data>
+  <data name="UpdateProfile" xml:space="preserve">
+    <value>Ажурирај профил</value>
+  </data>
+  <data name="PaymentSuccessful" xml:space="preserve">
+    <value>Плаќањето е успешно!</value>
+  </data>
+  <data name="ThankYouForOrder" xml:space="preserve">
+    <value>Ви благодариме за вашата нарачка!</value>
+  </data>
+  <data name="ViewOrders" xml:space="preserve">
+    <value>Погледни нарачки</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Плаќање</value>
+  </data>
+  <data name="PayWithCard" xml:space="preserve">
+    <value>Плати со картичка</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Ново</value>
+  </data>
+  <data name="Used" xml:space="preserve">
+    <value>Користено</value>
+  </data>
+  <data name="Refurbished" xml:space="preserve">
+    <value>Обновено</value>
+  </data>
+  <data name="EditListing" xml:space="preserve">
+    <value>Измени оглас</value>
+  </data>
+  <data name="DeleteListing" xml:space="preserve">
+    <value>Избриши оглас</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Телефонски број</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="LoginToCompletePurchase" xml:space="preserve">
+    <value>Ве молиме најавете се за да ја завршите вашата нарачка. Потребна ви е сметка за да нарачате.</value>
+  </data>
+  <data name="NorthMacedonia" xml:space="preserve">
+    <value>Северна Македонија</value>
+  </data>
+  <data name="OrderId" xml:space="preserve">
+    <value>Број на нарачка</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Датум</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Акции</value>
+  </data>
+  <data name="CreateOrder" xml:space="preserve">
+    <value>Креирај нарачка</value>
+  </data>
+  <data name="ProceedToPayment" xml:space="preserve">
+    <value>Продолжи кон плаќање</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Во чекање</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>Платено</value>
+  </data>
+  <data name="Shipped" xml:space="preserve">
+    <value>Испратено</value>
+  </data>
+  <data name="Delivered" xml:space="preserve">
+    <value>Доставено</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Откажано</value>
+  </data>
+  <data name="OrderItems" xml:space="preserve">
+    <value>Ставки од нарачка</value>
+  </data>
+  <data name="Listing" xml:space="preserve">
+    <value>Оглас</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Количина</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Единечна цена</value>
+  </data>
+  <data name="Subtotal" xml:space="preserve">
+    <value>Вкупно</value>
+  </data>
+  <data name="BackToOrders" xml:space="preserve">
+    <value>Назад кон нарачки</value>
+  </data>
+  <data name="ThankYouForPurchase" xml:space="preserve">
+    <value>Ви благодариме за вашата купувачка.</value>
+  </data>
+  <data name="OrderConfirmed" xml:space="preserve">
+    <value>Вашата нарачка е потврдена и плаќањето е примено.</value>
+  </data>
+  <data name="ConfirmationEmail" xml:space="preserve">
+    <value>Наскоро ќе добиете е-пошта за потврда.</value>
+  </data>
+  <data name="ContinueShopping" xml:space="preserve">
+    <value>Продолжи со купување</value>
+  </data>
+  <data name="PaymentIntentId" xml:space="preserve">
+    <value>ID на плаќање</value>
+  </data>
+  <data name="OrderSummary" xml:space="preserve">
+    <value>Преглед на нарачка</value>
+  </data>
+  <data name="PaymentDetails" xml:space="preserve">
+    <value>Детали за плаќање</value>
+  </data>
+  <data name="PayNow" xml:space="preserve">
+    <value>Плати сега</value>
+  </data>
+</root>

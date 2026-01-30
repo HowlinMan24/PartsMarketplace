@@ -1,0 +1,10 @@
+bin/
+obj/
+.vs/
+.git/
+**/bin/
+**/obj/
+publish/
+.env
+*.db
+*.sqlite

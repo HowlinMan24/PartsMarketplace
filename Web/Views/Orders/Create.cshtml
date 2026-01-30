@@ -1,0 +1,73 @@
+@model Web.ViewModels.CreateOrderViewModel
+@{
+    ViewData["Title"] = L["CreateOrder"].Value;
+}
+
+<h2>@L["CreateOrder"]</h2>
+
+@if (Model.Listing != null)
+{
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h4>@Model.Listing.Title</h4>
+            <p>@Model.Listing.Description</p>
+            @if (Model.ConvertedPrice.HasValue && !string.IsNullOrEmpty(Model.ConvertedCurrency))
+            {
+                <p><strong>@L["Price"]: @Model.ConvertedPrice.Value.ToString("N0") @Model.ConvertedCurrency</strong></p>
+            }
+            else
+            {
+                <p><strong>@L["Price"]: @Model.Listing.Price.ToString("N2") @Model.Listing.Currency</strong></p>
+            }
+        </div>
+    </div>
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ListingId" />
+
+            <div class="form-group mb-3">
+                <label asp-for="ShippingAddress" class="control-label">@L["ShippingAddress"]</label>
+                <input asp-for="ShippingAddress" class="form-control" />
+                <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Quantity" class="control-label">@L["Quantity"]</label>
+                <input asp-for="Quantity" class="form-control" type="number" min="1" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ShippingCity" class="control-label">@L["City"]</label>
+                <input asp-for="ShippingCity" class="form-control" />
+                <span asp-validation-for="ShippingCity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ShippingPostalCode" class="control-label">@L["PostalCode"]</label>
+                <input asp-for="ShippingPostalCode" class="form-control" />
+                <span asp-validation-for="ShippingPostalCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ShippingCountry" class="control-label">@L["Country"]</label>
+                <input asp-for="ShippingCountry" class="form-control" value="@L["NorthMacedonia"]" />
+                <span asp-validation-for="ShippingCountry" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <input type="submit" value="@L["ProceedToPayment"]" class="btn btn-primary" />
+                <a asp-controller="Listings" asp-action="Details" asp-route-id="@Model.ListingId" class="btn btn-secondary">@L["Cancel"]</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

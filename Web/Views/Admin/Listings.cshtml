@@ -1,0 +1,44 @@
+@model IEnumerable<Application.DTOs.ListingDto>
+@{
+    ViewData["Title"] = "Manage Listings";
+}
+
+<h2>Manage All Listings</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var listing in Model)
+        {
+            <tr>
+                <td>@listing.Id</td>
+                <td>@listing.Title</td>
+                <td>$@listing.Price.ToString("N2")</td>
+                <td>@listing.ListingType</td>
+                <td>
+                    <span class="badge bg-@(listing.IsActive ? "success" : "secondary")">
+                        @(listing.IsActive ? "Active" : "Inactive")
+                    </span>
+                </td>
+                <td>@listing.CreatedAt.ToString("MMM dd, yyyy")</td>
+                <td>
+                    <a asp-controller="Listings" asp-action="Details" asp-route-id="@listing.Id" class="btn btn-sm btn-outline-primary">View</a>
+                    <a asp-controller="Listings" asp-action="Edit" asp-route-id="@listing.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a asp-controller="Listings" asp-action="Delete" asp-route-id="@listing.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Back to Dashboard</a>

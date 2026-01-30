@@ -1,0 +1,74 @@
+===============================================
+ПОТРЕБНИ СЛИКИ ЗА ОГЛАСИ / IMAGES NEEDED
+===============================================
+
+Стави ги следниве слики во овој директориум:
+Put the following images in this directory:
+/Web/wwwroot/images/listings/
+
+АВТОМОБИЛИ (Cars) - 10 слики:
+--------------------------------
+1. toyota-camry-2018.jpg
+2. honda-civic-2020.jpg
+3. bmw-3series-2015.jpg
+4. ford-f150-2019.jpg
+5. mercedes-c-class-2017.jpg
+6. tesla-model3-2021.jpg
+7. jeep-wrangler-2016.jpg
+8. mazda-cx5-2019.jpg
+9. vw-golf-gti-2014.jpg
+10. subaru-outback-2020.jpg
+
+МОТОЦИКЛИ (Motorcycles) - 10 слики:
+------------------------------------
+11. harley-street-750-2019.jpg
+12. yamaha-mt07-2020.jpg
+13. kawasaki-ninja-400-2018.jpg
+14. honda-cb500x-2021.jpg
+15. bmw-r1200gs-2017.jpg
+16. ducati-monster-821-2019.jpg
+17. suzuki-vstrom-650-2020.jpg
+18. triumph-street-triple-2016.jpg
+19. ktm-390-duke-2021.jpg
+20. indian-scout-bobber-2018.jpg
+
+ДЕЛОВИ (Parts) - 10 слики:
+---------------------------
+21. brembo-brake-kit.jpg
+22. kn-air-intake.jpg
+23. magnaflow-exhaust.jpg
+24. bbs-wheels-18.jpg
+25. bilstein-shocks.jpg
+26. honda-civic-headlights.jpg
+27. weathertech-mats.jpg
+28. led-headlight-bulb.jpg
+29. ngk-spark-plugs.jpg
+30. carbon-fiber-hood-bmw.jpg
+
+===============================================
+НАПОМЕНИ / NOTES:
+===============================================
+
+1. Сите слики треба да бидат во .jpg формат
+   All images should be in .jpg format
+
+2. Препорачана резолуција: 800x600 или поголема
+   Recommended resolution: 800x600 or larger
+
+3. Можеш да користиш слики од Google Images, stock photos,
+   или да креираш placeholder слики
+   You can use images from Google Images, stock photos,
+   or create placeholder images
+
+4. Ако немаш слики, може привремено да користиш placeholder:
+   https://via.placeholder.com/800x600?text=Car+Image
+   If you don't have images, you can temporarily use placeholder:
+   https://via.placeholder.com/800x600?text=Car+Image
+
+5. По креирањето на сликите, изврши ја миграцијата:
+   After creating the images, run the migration:
+
+   cd Infrastructure
+   dotnet ef database update --project . --startup-project ../Web
+
+===============================================

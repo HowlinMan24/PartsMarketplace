@@ -1,0 +1,77 @@
+@model IEnumerable<Application.DTOs.ListingDto>
+@{
+    ViewData["Title"] = L["Home"].Value;
+    var isMacedonianSite = ViewBag.IsMacedonianSite as bool? ?? false;
+    var convertedPrices = ViewBag.ConvertedPrices as Dictionary<int, decimal>;
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">@L["HomeTitle"]</h1>
+    <p class="lead">@L["HomeSubtitle"]</p>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <form asp-action="Index" method="get" class="d-flex gap-2">
+            <input type="text" name="searchTerm" class="form-control" placeholder="@L["SearchPlaceholder"]" value="@ViewBag.SearchTerm" />
+            <select name="listingType" class="form-select" style="max-width: 200px;">
+                <option value="">@L["AllTypes"]</option>
+                <option value="Car" selected="@(ViewBag.ListingType == "Car")">@L["Car"]</option>
+                <option value="Motorcycle" selected="@(ViewBag.ListingType == "Motorcycle")">@L["Motorcycle"]</option>
+                <option value="Part" selected="@(ViewBag.ListingType == "Part")">@L["Part"]</option>
+            </select>
+            <button type="submit" class="btn btn-primary">@L["Search"]</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var listing in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(listing.ImageUrl))
+                    {
+                        <img src="@listing.ImageUrl" class="card-img-top" alt="@listing.Title" style="height: 200px; object-fit: cover;">
+                    }
+                    else
+                    {
+                        <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <span class="text-white">@L["NoImage"]</span>
+                        </div>
+                    }
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@listing.Title</h5>
+                        <p class="card-text flex-grow-1">@(listing.Description.Length > 100 ? listing.Description.Substring(0, 100) + "..." : listing.Description)</p>
+                        <div class="mt-auto">
+                            @if (isMacedonianSite && convertedPrices != null && convertedPrices.ContainsKey(listing.Id))
+                            {
+                                <p class="card-text"><strong>@L["Price"]: @convertedPrices[listing.Id].ToString("N0") MKD</strong></p>
+                            }
+                            else
+                            {
+                                <p class="card-text"><strong>@L["Price"]: @listing.Price.ToString("N2") @listing.Currency</strong></p>
+                            }
+                            <p class="card-text"><small class="text-muted">@L[listing.ListingType] - @listing.CategoryName</small></p>
+                            <a asp-controller="Listings" asp-action="Details" asp-route-id="@listing.Id" class="btn btn-primary">@L["ViewDetails"]</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <p class="text-center">
+                @L["NoListingsFound"]
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a asp-controller="Listings" asp-action="Create">@L["CreateFirstListing"]</a>
+                }
+            </p>
+        </div>
+    }
+</div>

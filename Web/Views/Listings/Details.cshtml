@@ -1,0 +1,109 @@
+@model Web.ViewModels.ListingDetailsViewModel
+@using System.Security.Claims
+@{
+    ViewData["Title"] = L["ListingDetails"].Value;
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var isMacedonianSite = System.Globalization.CultureInfo.CurrentUICulture.Name.StartsWith("mk", StringComparison.OrdinalIgnoreCase);
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<h2>@Model.Listing.Title</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @if (!string.IsNullOrEmpty(Model.Listing.ImageUrl))
+        {
+            <img src="@Model.Listing.ImageUrl" class="img-fluid" alt="@Model.Listing.Title" />
+        }
+        else
+        {
+            <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 400px;">
+                <span class="text-white">@L["NoImageAvailable"]</span>
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">@L["Description"]:</dt>
+            <dd class="col-sm-8">@Model.Listing.Description</dd>
+
+            <dt class="col-sm-4">@L["Price"] (@Model.Listing.Currency):</dt>
+            <dd class="col-sm-8"><strong>@Model.Listing.Price.ToString("N2") @Model.Listing.Currency</strong></dd>
+
+            @if (isMacedonianSite && Model.Listing.Currency != Model.PriceTransformation.Currency)
+            {
+                <dt class="col-sm-4">@L["ApproxIn"] @Model.PriceTransformation.Currency:</dt>
+                <dd class="col-sm-8">
+                    <strong class="text-success">@Model.PriceTransformation.PriceInMKD.ToString("N2") @Model.PriceTransformation.Currency</strong>
+                </dd>
+            }
+
+            <dt class="col-sm-4">@L["Category"]:</dt>
+            <dd class="col-sm-8">@Model.Listing.CategoryName</dd>
+
+            <dt class="col-sm-4">@L["Type"]:</dt>
+            <dd class="col-sm-8">@L[Model.Listing.ListingType]</dd>
+
+            @if (!string.IsNullOrEmpty(Model.Listing.Make))
+            {
+                <dt class="col-sm-4">@L["Make"]:</dt>
+                <dd class="col-sm-8">@Model.Listing.Make</dd>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Listing.Model))
+            {
+                <dt class="col-sm-4">@L["Model"]:</dt>
+                <dd class="col-sm-8">@Model.Listing.Model</dd>
+            }
+
+            @if (Model.Listing.Year.HasValue)
+            {
+                <dt class="col-sm-4">@L["Year"]:</dt>
+                <dd class="col-sm-8">@Model.Listing.Year</dd>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Listing.Condition))
+            {
+                <dt class="col-sm-4">@L["Condition"]:</dt>
+                <dd class="col-sm-8">@Model.Listing.Condition</dd>
+            }
+
+            <dt class="col-sm-4">@L["Seller"]:</dt>
+            <dd class="col-sm-8">
+                @if (!string.IsNullOrEmpty(Model.Listing.SellerFirstName) || !string.IsNullOrEmpty(Model.Listing.SellerLastName))
+                {
+                    <span>@Model.Listing.SellerFirstName @Model.Listing.SellerLastName</span>
+                }
+                else
+                {
+                    <span>@Model.Listing.UserName</span>
+                }
+            </dd>
+
+            @if (!string.IsNullOrEmpty(Model.Listing.SellerPhoneNumber))
+            {
+                <dt class="col-sm-4">@L["Phone"]:</dt>
+                <dd class="col-sm-8">@Model.Listing.SellerPhoneNumber</dd>
+            }
+
+            <dt class="col-sm-4">@L["Created"]:</dt>
+            <dd class="col-sm-8">@Model.Listing.CreatedAt.ToString("MMM dd, yyyy")</dd>
+        </dl>
+
+        <div class="mt-4">
+            @* Show Buy Now only if current user is not the owner *@
+            @if (string.IsNullOrEmpty(currentUserId) || currentUserId != Model.Listing.UserId)
+            {
+                <a asp-controller="Orders" asp-action="Create" asp-route-listingId="@Model.Listing.Id" class="btn btn-primary btn-lg">@L["BuyNow"]</a>
+            }
+            <a asp-action="Index" class="btn btn-secondary">@L["BackToList"]</a>
+        </div>
+    </div>
+</div>
