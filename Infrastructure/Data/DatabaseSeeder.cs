@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace Infrastructure.Data;
 
@@ -57,9 +55,9 @@ public static class DatabaseSeeder
         {
             var categories = new[]
             {
-                new Category { Id = 1, Name = "Cars", Description = "Used cars for sale" },
+                new Category { Id = 1, Name = "Cars",        Description = "Used cars for sale" },
                 new Category { Id = 2, Name = "Motorcycles", Description = "Used motorcycles for sale" },
-                new Category { Id = 3, Name = "Parts", Description = "Car and motorcycle parts" }
+                new Category { Id = 3, Name = "Parts",       Description = "Car and motorcycle parts" }
             };
 
             await context.Categories.AddRangeAsync(categories);
@@ -98,23 +96,64 @@ public static class DatabaseSeeder
         }
 
         var existingCount = await context.Listings.CountAsync();
-        if (existingCount < 30)
+        if (existingCount < 30 && testUser != null)
         {
             var listingsList = new List<Listing>();
+
+            var imageUrls = new[]
+            {
+                "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg",
+                "https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg",
+                "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg",
+                "https://images.pexels.com/photos/2449452/pexels-photo-2449452.jpeg",
+                "https://images.pexels.com/photos/799443/pexels-photo-799443.jpeg"
+            };
+
+            var carMakes  = new[] { "Toyota", "BMW", "Audi", "Ford", "Volkswagen" };
+            var carModels = new[] { "Corolla", "3 Series", "A4", "Focus", "Golf" };
+
+            var motoMakes  = new[] { "Honda", "Yamaha", "Kawasaki", "Suzuki", "Ducati" };
+            var motoModels = new[] { "CBR600", "MT-07", "Ninja 650", "GSX-R750", "Monster 821" };
+
+            var partNames = new[]
+            {
+                "Brake Pads", "Oil Filter", "Spark Plugs", "Air Filter", "Clutch Kit",
+                "Battery", "Alternator", "Radiator", "Fuel Pump", "Headlights"
+            };
+
             for (int i = existingCount + 1; i <= 30; i++)
             {
                 var categoryId = (i % 3) == 1 ? 1 : ((i % 3) == 2 ? 2 : 3);
-                var title = categoryId == 1 ? $"Used Car Model {i}" : categoryId == 2 ? $"Motorcycle Model {i}" : $"Part #{i}";
-                var make = categoryId == 3 ? "" : $"Make{i % 10}";
-                var model = categoryId == 3 ? $"PartModel{i % 20}" : $"Model{i % 20}";
                 var year = 2000 + (i % 25);
                 var price = categoryId == 3 ? 10 + i * 2 : 1000 + i * 150;
-                var imageIndex = ((i - 1) % 10) + 1;
-                var imageUrl = $"/images/listings/listing{imageIndex}.jpg";
+                var imageUrl = imageUrls[Random.Shared.Next(imageUrls.Length)];
+
+                string title;
+                string make;
+                string model;
+
+                if (categoryId == 1) // Cars
+                {
+                    make  = carMakes[(i - 1) % carMakes.Length];
+                    model = carModels[(i - 1) % carModels.Length];
+                    title = $"{make} {model} {year}";
+                }
+                else if (categoryId == 2) // Motorcycles
+                {
+                    make  = motoMakes[(i - 1) % motoMakes.Length];
+                    model = motoModels[(i - 1) % motoModels.Length];
+                    title = $"{make} {model} {year}";
+                }
+                else // Parts
+                {
+                    make  = string.Empty;
+                    model = partNames[(i - 1) % partNames.Length];
+                    title = model;
+                }
 
                 listingsList.Add(new Listing
                 {
-                    UserId = testUser!.Id,
+                    UserId = testUser.Id,
                     CategoryId = categoryId,
                     Title = title,
                     Description = $"Auto-generated listing {i}",

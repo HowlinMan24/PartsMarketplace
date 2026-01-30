@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 using Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -12,7 +13,8 @@ public class IpGeolocationService : IGeolocationService
     private readonly ILogger<IpGeolocationService> _logger;
     private const string BaseUrl = "http://ip-api.com/json";
 
-    public IpGeolocationService(HttpClient httpClient, IConfiguration configuration, ILogger<IpGeolocationService> logger)
+    public IpGeolocationService(HttpClient httpClient, IConfiguration configuration,
+        ILogger<IpGeolocationService> logger)
     {
         _httpClient = httpClient;
         _configuration = configuration;
@@ -38,18 +40,19 @@ public class IpGeolocationService : IGeolocationService
             string url;
             if (string.IsNullOrEmpty(ipAddress) || ipAddress == "::1" || ipAddress == "127.0.0.1")
             {
-                 url = $"{BaseUrl}";
+                url = $"{BaseUrl}";
             }
             else
             {
-                 url = $"{BaseUrl}/{ipAddress}";
+                url = $"{BaseUrl}/{ipAddress}";
             }
 
             _logger.LogInformation("Calling geolocation API: {Url}", url);
 
             var response = await _httpClient.GetFromJsonAsync<IpGeolocationResponse>(url);
 
-            _logger.LogInformation("Geolocation API response for IP {IP}: CountryCode={CountryCode}, Currency={Currency}",
+            _logger.LogInformation(
+                "Geolocation API response for IP {IP}: CountryCode={CountryCode}, Currency={Currency}",
                 ipAddress,
                 response?.CountryCode ?? "(null)",
                 response?.CurrencyCode ?? response?.Currency?.Code ?? "(null)");
@@ -65,13 +68,13 @@ public class IpGeolocationService : IGeolocationService
 
     private class IpGeolocationResponse
     {
-        [System.Text.Json.Serialization.JsonPropertyName("countryCode")]
+        [JsonPropertyName("countryCode")]
         public string? CountryCode { get; set; }
 
-        [System.Text.Json.Serialization.JsonPropertyName("country_code2")]
+        [JsonPropertyName("country_code2")]
         public string? CountryCode2 { get; set; }
 
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        [JsonPropertyName("currency")]
         public string? CurrencyCode { get; set; }
 
         public CurrencyInfo? Currency { get; set; }
@@ -79,7 +82,7 @@ public class IpGeolocationService : IGeolocationService
 
     private class CurrencyInfo
     {
-        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        [JsonPropertyName("code")]
         public string? Code { get; set; }
     }
 }

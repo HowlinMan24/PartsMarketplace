@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CarPartsMarketplace" xml:space="preserve">
-    <value>Car Parts Marketplace</value>
+    <value>Parts Marketplace</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -95,7 +95,7 @@
     <value>Privacy</value>
   </data>
   <data name="HomeTitle" xml:space="preserve">
-    <value>Car Parts Marketplace</value>
+    <value>Parts Marketplace</value>
   </data>
   <data name="HomeSubtitle" xml:space="preserve">
     <value>Buy and sell used cars, motorcycles, and spare parts</value>

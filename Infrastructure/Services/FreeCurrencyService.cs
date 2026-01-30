@@ -14,16 +14,16 @@ public class FreeCurrencyService : ICurrencyService
 
     private static readonly Dictionary<string, decimal> FallbackRatesVsUsd = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["MKD"] = 57.0m,   // North Macedonian Denar
+        ["MKD"] = 57.0m, // North Macedonian Denar
         ["EUR"] = 0.92m,
         ["GBP"] = 0.79m,
         ["CHF"] = 0.88m,
         ["CAD"] = 1.36m,
         ["AUD"] = 1.53m,
         ["JPY"] = 149.0m,
-        ["RSD"] = 108.0m,  // Serbian Dinar
-        ["BGN"] = 1.80m,   // Bulgarian Lev
-        ["ALL"] = 95.0m,   // Albanian Lek
+        ["RSD"] = 108.0m, // Serbian Dinar
+        ["BGN"] = 1.80m, // Bulgarian Lev
+        ["ALL"] = 95.0m, // Albanian Lek
     };
 
     private static Dictionary<string, decimal>? _cachedRates;
@@ -60,7 +60,8 @@ public class FreeCurrencyService : ICurrencyService
             }
             else
             {
-                _logger.LogWarning("Currency rate not found for {From}, cannot convert from {From} to {To}", fromCurrency, fromCurrency, toCurrency);
+                _logger.LogWarning("Currency rate not found for {From}, cannot convert from {From} to {To}",
+                    fromCurrency, fromCurrency, toCurrency);
                 return amount;
             }
         }
@@ -76,7 +77,8 @@ public class FreeCurrencyService : ICurrencyService
             }
             else
             {
-                _logger.LogWarning("Currency rate not found for {To}, cannot convert from {From} to {To}", toCurrency, fromCurrency, toCurrency);
+                _logger.LogWarning("Currency rate not found for {To}, cannot convert from {From} to {To}", toCurrency,
+                    fromCurrency, toCurrency);
                 return amount;
             }
         }
@@ -96,9 +98,9 @@ public class FreeCurrencyService : ICurrencyService
         {
             var apiKey = _configuration["CurrencyApi:ApiKey"] ?? "fca_live_KEY8zcU6vV0SOrAWEZNVBrCj4T3yorm0UCDCg8Qk";
             var url = $"{BaseUrl}?apikey={apiKey}&base_currency=USD"; // Always fetch relative to USD for consistency
-            
+
             var response = await _httpClient.GetFromJsonAsync<FreeCurrencyResponse>(url);
-            
+
             if (response?.Data != null)
             {
                 _cachedRates = response.Data;

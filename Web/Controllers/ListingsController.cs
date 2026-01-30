@@ -1,14 +1,12 @@
+using System.Security.Claims;
 using Application.Commands.Listings;
 using Application.DTOs;
 using Application.Queries.Listings;
-using Application.Queries.Pricing;
+using Domain.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.ViewModels;
-using System.Security.Claims;
-using Domain.Interfaces;
-using Infrastructure.Services;
 
 namespace Web.Controllers;
 
@@ -20,7 +18,7 @@ public class ListingsController : Controller
     private readonly ICurrencyService _currencyService;
 
     public ListingsController(
-        IMediator mediator, 
+        IMediator mediator,
         ILogger<ListingsController> logger,
         IGeolocationService geolocationService,
         ICurrencyService currencyService)
@@ -113,22 +111,22 @@ public class ListingsController : Controller
         return View(viewModel);
     }
 
-    [Microsoft.AspNetCore.Authorization.Authorize]
+    [Authorize]
     public async Task<IActionResult> Create()
     {
         var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
         var userCurrency = await _geolocationService.GetCurrencyCodeAsync(ipAddress ?? "");
-        
+
         var model = new CreateListingDto
         {
-             Currency = userCurrency
+            Currency = userCurrency
         };
-        
+
         return View(model);
     }
 
     [HttpPost]
-    [Microsoft.AspNetCore.Authorization.Authorize]
+    [Authorize]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateListingDto listingDto)
     {
@@ -194,7 +192,8 @@ public class ListingsController : Controller
                 }
 
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                if (string.IsNullOrEmpty(currentUserId) || (existingListing.UserId != currentUserId && !User.IsInRole("Admin")))
+                if (string.IsNullOrEmpty(currentUserId) ||
+                    (existingListing.UserId != currentUserId && !User.IsInRole("Admin")))
                 {
                     return Forbid();
                 }
